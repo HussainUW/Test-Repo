@@ -1,3 +1,10 @@
+
+in-person 2A sounds like fun /s
+
 ECE 105 is a really fun course /s
 
 DAVID WAS HERE
+<<<<<<< HEAD
+=======
+
+>>>>>>> 612139db01434ff1c04112af200127c81139b097
