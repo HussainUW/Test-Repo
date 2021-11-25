@@ -7,6 +7,7 @@ Modules in our case refer to express, pg and cors which linked to our JS / React
 //requiring libraries...this allows us to use the express and cors libraries / modules
 const express = require("express");
 const cors = require("cors");
+const pool = require("./db"); //allows us to run queries with postgres using the 'pool' required from db.js
 
 //creating variable 'app' which will run the express library and allow us to access its functions
 const app = express();
