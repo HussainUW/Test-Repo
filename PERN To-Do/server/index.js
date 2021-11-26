@@ -19,14 +19,10 @@ app.use(express.json()); //allows us to recieve data JSON from client, allows us
 //ROUTES//
 
 //create a todo
-app.get('/todos', function(req,res){
-    res.send('hello');
-    console.log(req.body);
-    console.log("test");
-});
 
-app.post('/todos', async(req, res) =>{
+app.post('/todos', async(req,res)=>{
     try {
+        res.send('Create a todo...');
         console.log(req.body);
     } catch (err) {
         console.error(err.message);
