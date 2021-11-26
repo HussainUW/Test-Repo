@@ -14,7 +14,32 @@ const app = express();
 
 //middleware
 app.use(cors());
-app.use(express.json()); //allows us to recieve data JSON from client
+app.use(express.json()); //allows us to recieve data JSON from client, allows us to use the req.body object
+
+//ROUTES//
+
+//create a todo
+app.get('/todos', function(req,res){
+    res.send('hello');
+    console.log(req.body);
+    console.log("test");
+});
+
+app.post('/todos', async(req, res) =>{
+    try {
+        console.log(req.body);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+//get all todos
+
+//get a todo
+
+//update a todo
+
+//delete a todo
 
 app.listen(5000, () => {
     console.log("server has started on port 5000")
