@@ -20,22 +20,39 @@ app.use(express.json()); //allows us to recieve data JSON from client, allows us
 
 //home route
 
+/*
+root route is created using a get request, first parameter is the name of the route
+with the second being a function that takes a request and response parameter, arrow notation
+is used to return some frontend HTML via the res.send function
+*/
+
 app.get('/', (req,res)=>{
     res.send('Home Page');
 });
 
 //create a todo
 
+/*
+- todos route created using post request
+- parameters include route name and an asynchronous function that awaits functions retrieving data from postgress
+- req.body is an express object that returns request body information from server API
+*/
+
 app.post('/todos', async(req,res) => {
     try {
+        //description is assigned request body data stored in req.body
         const {description} = req.body;
+        //route awaits data from database query function pool
         const newTodo = await pool.query(
+            //here description refers to row within todo table in postgres db
             "INSERT INTO todo (description) VALUES($1) RETURNING *",
+            //here description refers to variable storing data from req.body
             [description]
         );
-
+        //response variable returns data retrieved from query pool as json data
         res.json(newTodo.rows[0]);
     } catch (err) {
+        //catch construct for catching errors when pool returns something other than data
         console.error(err.message);
     }
 });
