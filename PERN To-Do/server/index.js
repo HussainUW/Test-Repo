@@ -71,9 +71,51 @@ app.get("/todos", async (req, res) => {
 
 //get a todo
 
+/* 
+The ':id' clause allows the route to store an id value that comes from a particular request, for example for
+todo/random, id = random. We can use the express object req.params to store this id in a local variable 'id'
+*/
+
+app.get("/todos/:id", async (req, res) => {
+    try {
+        //storing request id in local variable...
+        const {id} = req.params;
+        //perform pool query asynchronously to retrieve todo object where id value matches the id value stored in req.params[id]
+        const todo = await pool.query("SELECT * FROM todo WHERE todo_id = $1", [id]);
+
+        //respond with with first row from table in json format
+        res.json(todo.rows[0]);
+    } catch (error) {
+        console.error(error.message);
+    }
+});
+
 //update a todo
 
+app.put("/todos/:id", async (req,res) => {
+    try {
+        const {id} = req.params;
+        const {description} = req.body;
+        //updates todo description based on id using above local variables, then stores query in local variable 
+        const updateTodo = await pool.query("UPDATE todo SET description = $1 WHERE todo_id = $2", [description, id]);
+
+        res.json("Todo was updated!");
+    } catch (error) {
+        console.log(error.message);
+    }
+});
+
 //delete a todo
+
+app.delete("/todos/:id", async (req,res) => {
+    try {
+        const {id} = req.params;
+        const deleteTodo = await pool.query("DELETE FROM todo WHERE todo_id = $1", [id]);
+        res.json("Todo was deleted!");
+    } catch (error) {
+        console.log(error.message);
+    }
+});
 
 app.listen(5000, () => {
     console.log("server has started on port 5000")
