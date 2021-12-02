@@ -19,6 +19,7 @@ const ListTodos = () => {
     const deleteAllTodos = async() => {
         try {
             const deleteAllTodos = await fetch("http://localhost:5000/todos", {method:"DELETE"});
+            window.location = "/";
         } catch (error) {
             
         }
