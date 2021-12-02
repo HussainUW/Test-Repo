@@ -21,6 +21,7 @@ const ListTodos = () => {
         try {
             const deleteAllTodos = await fetch("http://localhost:5000/todos", {method:"DELETE"});
             console.log(deleteAllTodos);
+            window.location = "/";
         } catch (error) {
             console.error(error.message);
         }
@@ -75,7 +76,7 @@ const ListTodos = () => {
                    <td>
                        <button
                             className="btn btn-danger"
-                            onClick = {() => deleteAllTodos()}
+                            onClick = {() => deleteAllTodos(todos)}
                        >Delete All</button>
                    </td>
                </tr>
