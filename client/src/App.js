@@ -10,23 +10,37 @@ import InputTodo from "./components/InputTodo";
 function App() {
   return( 
   <Fragment>
-    <div className="container">
-      <h3 className="text-center mt-5">Monday Todo List</h3>
-      <InputTodo type = {'mon'} />
-      <h3 className="text-center mt-5">Tuesday Todo List</h3>
-      <InputTodo type = {'tue'} />
-      <h3 className="text-center mt-5">Wednesday Todo List</h3>
-      <InputTodo type = {'wed'} />
-      <h3 className="text-center mt-5">Thursday Todo List</h3>
-      <InputTodo type = {'thu'} />
-      <h3 className="text-center mt-5">Friday Todo List</h3>
-      <InputTodo type = {'fri'} />
-      <h3 className="text-center mt-5">Saturday Todo List</h3>
-      <InputTodo type = {'sat'} />
-      <h3 className="text-center mt-5">Sunday Todo List</h3>
-      <InputTodo type = {'sun'} />
+    <div class="flex-parent-element">
+      <div className="container flex-child-element">
+        <h3 className="text-center mt-5">Monday </h3>
+        <InputTodo type = {'mon'} />
+      </div>
+      <div className="container flex-child-element">
+        <h3 className="text-center mt-5">Tuesday </h3>
+        <InputTodo type = {'tue'} />
+      </div>
+      <div className="container flex-child-element">  
+        <h3 className="text-center mt-5">Wednesday </h3>
+        <InputTodo type = {'wed'} />
+      </div>
+      <div className="container flex-child-element">  
+        <h3 className="text-center mt-5">Thursday </h3>
+        <InputTodo type = {'thu'} />
+      </div>
+      <div className="container flex-child-element">  
+        <h3 className="text-center mt-5">Friday </h3>
+        <InputTodo type = {'fri'} />
+      </div>
+      <div className="container flex-child-element">  
+        <h3 className="text-center mt-5">Saturday </h3>
+        <InputTodo type = {'sat'} />
+      </div>
+      <div className="container flex-child-element">  
+        <h3 className="text-center mt-5">Sunday </h3>
+        <InputTodo type = {'sun'} />
+      </div>
     </div>
-  </Fragment>
+    </Fragment>
   );
 }
 

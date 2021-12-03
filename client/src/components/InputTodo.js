@@ -25,9 +25,11 @@ const InputTodo = ({type}) => {
     return(
         <Fragment>
                 <form className = "d-flex mt-5" onSubmit = {onSubmitForm}>
-                    <input type="text" className = "form-control" value={description} 
-                    onChange={e=>setDescription(e.target.value)}/>
-                    <button className="btn btn-success">Add</button>
+                    <div ClassName = "container">
+                        <input type="text" className = "form-control" value={description} 
+                        onChange={e=>setDescription(e.target.value)}/>
+                        <button className="btn btn-success">Add</button>
+                    </div>
                 </form>
             <ListTodos type = {type}/>
         </Fragment>

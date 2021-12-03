@@ -48,9 +48,7 @@ const ListTodos = ({type}) => {
             <table className="table mt-5 text-center">
                 <thead>
                     <tr>
-                        <th>Description</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+                        <th>Todo...</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -71,8 +69,6 @@ const ListTodos = ({type}) => {
                 </tbody>
                 <tfoot>
                 <tr>
-                    <td></td>
-                    <td></td>
                     <td>
                         <button
                                 className="btn btn-danger"
