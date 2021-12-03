@@ -38,16 +38,17 @@ app.get('/', (req,res)=>{
 - req.body is an express object that returns request body information from server API
 */
 
-app.post('/todos', async(req,res) => {
+app.post('/todos/:type', async(req,res) => {
     try {
+        const {type} = req.params;
         //description is assigned request body data stored in req.body
         const {description} = req.body;
         //route awaits data from database query function pool
         const newTodo = await pool.query(
             //here description refers to row within todo table in postgres db
-            "INSERT INTO todo (description) VALUES($1) RETURNING *",
+            "INSERT INTO todo (description,type) VALUES($1,$2) RETURNING *",
             //here description refers to variable storing data from req.body
-            [description]
+            [description,type]
         );
         //response variable returns data retrieved from query pool as json data
         res.json(newTodo.rows[0]);
@@ -76,15 +77,16 @@ The ':id' clause allows the route to store an id value that comes from a particu
 todo/random, id = random. We can use the express object req.params to store this id in a local variable 'id'
 */
 
-app.get("/todos/:id", async (req, res) => {
+// Changed this to get todos based on the tag
+app.get("/todos/:type", async (req, res) => {
     try {
         //storing request id in local variable...
-        const {id} = req.params;
+        const {type} = req.params;
         //perform pool query asynchronously to retrieve todo object where id value matches the id value stored in req.params[id]
-        const todo = await pool.query("SELECT * FROM todo WHERE todo_id = $1", [id]);
+        const todo = await pool.query("SELECT * FROM todo WHERE type = $1", [type]);
 
         //respond with with first row from table in json format
-        res.json(todo.rows[0]);
+        res.json(todo.rows);
     } catch (error) {
         console.error(error.message);
     }
@@ -117,10 +119,11 @@ app.delete("/todos/:id", async (req,res) => {
     }
 });
 
-//delete all todos
-app.delete("/todos", async (req,res) => {
+//delete all todos of a certain type
+app.delete("/todos/type/:type", async (req,res) => {
     try {
-        const deleteAllTodos = await pool.query("DELETE FROM todo");
+        const {type} = req.params;
+        const deleteAllTodos = await pool.query("DELETE FROM todo WHERE type = $1",[type]);
         console.log(deleteAllTodos);
         res.json("All Todos deleted!");
     } catch (error) {

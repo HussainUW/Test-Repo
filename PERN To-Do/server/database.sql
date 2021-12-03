@@ -9,3 +9,4 @@ CREATE TABLE todo(
     description VARCHAR(255)
 );
 
+ALTER TABLE todo ADD COLUMN type VARCHAR(15);

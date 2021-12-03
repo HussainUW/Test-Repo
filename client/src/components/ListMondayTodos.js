@@ -19,7 +19,7 @@ const ListTodos = () => {
     //delete all todos
     const deleteAllTodos = async() => {
         try {
-            const deleteAllTodos = await fetch("http://localhost:5000/todos", {method:"DELETE"});
+            const deleteAllTodos = await fetch("http://localhost:5000/todos/type/mon", {method:"DELETE"});
             console.log(deleteAllTodos);
             window.location = "/";
         } catch (error) {
@@ -30,7 +30,7 @@ const ListTodos = () => {
     const getTodos = async() => {
         try {
 
-            const response = await fetch("http://localhost:5000/todos");
+            const response = await fetch("http://localhost:5000/todos/mon");
             const jsonData = await response.json();
 
             setTodos(jsonData);
@@ -56,7 +56,7 @@ const ListTodos = () => {
                 </thead>
                 <tbody>
                     {todos.map(todo => (
-                        <tr key={todo.todo_id}>
+                        <tr key={todo.type}>
                             <td>{todo.description}</td>
                             <td>
                                 <EditTodo todo = {todo}/>
