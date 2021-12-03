@@ -1,15 +1,16 @@
 import React, {Fragment, useState} from "react";
+import ListTodos from "./ListTodos";
 
 //react function that returns Input Todo Header in html
-const InputTodo = () => {
+const InputTodo = ({type}) => {
     const [description, setDescription] = useState("");
 
     //JS function that manages API for recieving a request
-    const onSubmitForm = async e => {
+    const onSubmitForm = async (e) => {
         e.preventDefault();
         try {
             const body = {description};
-            const response = await fetch("http://localhost:5000/todos", {
+            const response = await fetch(`http://localhost:5000/todos/${type}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)
@@ -23,12 +24,14 @@ const InputTodo = () => {
 
     return(
         <Fragment>
-            <h1 className="text-center mt-5">PERN Todo List</h1>
                 <form className = "d-flex mt-5" onSubmit = {onSubmitForm}>
-                    <input type="text" className = "form-control" value={description} 
-                    onChange={e=>setDescription(e.target.value)}/>
-                    <button className="btn btn-success">Add</button>
+                    <div ClassName = "container">
+                        <input type="text" className = "form-control" value={description} 
+                        onChange={e=>setDescription(e.target.value)}/>
+                        <button className="btn btn-success">Add</button>
+                    </div>
                 </form>
+            <ListTodos type = {type}/>
         </Fragment>
     );
 };

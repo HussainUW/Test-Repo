@@ -1,7 +1,7 @@
 import React, {Fragment, useEffect, useState} from "react";
 import EditTodo from "./EditTodo";
 
-const ListTodos = () => {
+const ListTodos = ({type}) => {
 
     const [todos, setTodos] = useState([]);
 
@@ -19,7 +19,7 @@ const ListTodos = () => {
     //delete all todos
     const deleteAllTodos = async() => {
         try {
-            const deleteAllTodos = await fetch("http://localhost:5000/todos", {method:"DELETE"});
+            const deleteAllTodos = await fetch(`http://localhost:5000/todos/type/${type}`, {method:"DELETE"});
             console.log(deleteAllTodos);
             window.location = "/";
         } catch (error) {
@@ -29,8 +29,7 @@ const ListTodos = () => {
 
     const getTodos = async() => {
         try {
-
-            const response = await fetch("http://localhost:5000/todos");
+            const response = await fetch(`http://localhost:5000/todos/${type}`);
             const jsonData = await response.json();
 
             setTodos(jsonData);
@@ -49,14 +48,12 @@ const ListTodos = () => {
             <table className="table mt-5 text-center">
                 <thead>
                     <tr>
-                        <th>Description</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+                        <th>Todo...</th>
                     </tr>
                 </thead>
                 <tbody>
                     {todos.map(todo => (
-                        <tr key={todo.todo_id}>
+                        <tr key={todo.type}>
                             <td>{todo.description}</td>
                             <td>
                                 <EditTodo todo = {todo}/>
@@ -72,8 +69,6 @@ const ListTodos = () => {
                 </tbody>
                 <tfoot>
                 <tr>
-                    <td></td>
-                    <td></td>
                     <td>
                         <button
                                 className="btn btn-danger"

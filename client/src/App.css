@@ -2,6 +2,21 @@
   text-align: center;
 }
 
+.flex-parent-element {
+  display: flex;
+  width: 100%;
+}
+
+.flex-child-element {
+  flex: 1;
+  border: 2px solid black;
+  margin: 10px;
+}
+
+.flex-child-element:first-child {
+  margin-right: 20px;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
