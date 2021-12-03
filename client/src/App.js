@@ -11,7 +11,20 @@ function App() {
   return( 
   <Fragment>
     <div className="container">
-      <InputTodo />
+      <h3 className="text-center mt-5">Monday Todo List</h3>
+      <InputTodo type = {'mon'} />
+      <h3 className="text-center mt-5">Tuesday Todo List</h3>
+      <InputTodo type = {'tue'} />
+      <h3 className="text-center mt-5">Wednesday Todo List</h3>
+      <InputTodo type = {'wed'} />
+      <h3 className="text-center mt-5">Thursday Todo List</h3>
+      <InputTodo type = {'thu'} />
+      <h3 className="text-center mt-5">Friday Todo List</h3>
+      <InputTodo type = {'fri'} />
+      <h3 className="text-center mt-5">Saturday Todo List</h3>
+      <InputTodo type = {'sat'} />
+      <h3 className="text-center mt-5">Sunday Todo List</h3>
+      <InputTodo type = {'sun'} />
     </div>
   </Fragment>
   );
