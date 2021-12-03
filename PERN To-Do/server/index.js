@@ -131,6 +131,16 @@ app.delete("/todos/type/:type", async (req,res) => {
     }
 });
 
+app.delete("/todos", async (req,res) => {
+    try {
+        const deleteTodos = await pool.query("DELETE FROM todo");
+        console.log(deleteTodos);
+        res.json("All Todos Deleted!")
+    } catch (erropr) {
+        console.log(error.message);
+    }
+});
+
 
 app.listen(5000, () => {
     console.log("server has started on port 5000")

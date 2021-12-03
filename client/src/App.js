@@ -3,9 +3,7 @@ import './App.css';
 
 //components
 
-import InputMondayTodo from "./components/InputMondayTodo";
-import ListMondayTodos from "./components/ListMondayTodos";
-
+import InputTodo from "./components/InputTodo";
 //Fragments are used in react to return a number of child elements grouped together, as if we were running a number 
 //of functions one after another, rendering frontend in a group
 
@@ -13,8 +11,7 @@ function App() {
   return( 
   <Fragment>
     <div className="container">
-      <InputMondayTodo />
-      <ListMondayTodos />
+      <InputTodo />
     </div>
   </Fragment>
   );

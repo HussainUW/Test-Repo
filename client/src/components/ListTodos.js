@@ -1,7 +1,7 @@
 import React, {Fragment, useEffect, useState} from "react";
 import EditTodo from "./EditTodo";
 
-const ListTodos = () => {
+const ListTodos = ({type}) => {
 
     const [todos, setTodos] = useState([]);
 
@@ -19,7 +19,7 @@ const ListTodos = () => {
     //delete all todos
     const deleteAllTodos = async() => {
         try {
-            const deleteAllTodos = await fetch("http://localhost:5000/todos/type/mon", {method:"DELETE"});
+            const deleteAllTodos = await fetch(`http://localhost:5000/todos/type/${type}`, {method:"DELETE"});
             console.log(deleteAllTodos);
             window.location = "/";
         } catch (error) {
@@ -30,7 +30,7 @@ const ListTodos = () => {
     const getTodos = async() => {
         try {
 
-            const response = await fetch("http://localhost:5000/todos/mon");
+            const response = await fetch(`http://localhost:5000/todos/${type}`);
             const jsonData = await response.json();
 
             setTodos(jsonData);
