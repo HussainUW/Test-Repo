@@ -1,16 +1,32 @@
 .App {
   text-align: center;
 }
+.button {
+  background-color: #fff;
+  border-color: black;
+  color: black;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+}
 
 .flex-parent-element {
   display: flex;
-  width: 100%;
+  border: none;
+  width: 99%;
 }
 
 .flex-child-element {
   flex: 1;
-  border: 2px solid black;
+  border: 1px solid #f7f7f7;
+  border-radius: 10px;
   margin: 10px;
+}
+
+.dark-grey{
+  color: #292b2c;
 }
 
 .flex-child-element:first-child {

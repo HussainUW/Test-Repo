@@ -27,7 +27,7 @@ is used to return some frontend HTML via the res.send function
 */
 
 app.get('/', (req,res)=>{
-    res.send('Home Page');
+    res.send('Root');
 });
 
 //create a todo
