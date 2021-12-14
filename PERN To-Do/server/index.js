@@ -38,37 +38,86 @@ app.get('/', (req,res)=>{
 - req.body is an express object that returns request body information from server API
 */
 
-app.post('/todos/:type', async(req,res) => {
+app.post('/todos/:type/:student_id', async(req,res) => {
     try {
-        const {type} = req.params;
+
+        const {
+            type,
+            student_id
+        } = req.params
+
         //description is assigned request body data stored in req.body
         const {description} = req.body;
-        //route awaits data from database query function pool
+
+        const getStudent = await pool.query("SELECT * FROM students WHERE student = $1", [student_id]);
+        const student = getStudent.rows[0];
+
+        //res.json(student);
+
         const newTodo = await pool.query(
             //here description refers to row within todo table in postgres db
-            "INSERT INTO todo (description,type) VALUES($1,$2) RETURNING *",
+            "INSERT INTO todo (description, type) VALUES($1, $2) RETURNING *",
             //here description refers to variable storing data from req.body
-            [description,type]
+            [description, type]
         );
-        //response variable returns data retrieved from query pool as json data
-        res.json(newTodo.rows[0]);
+
+        const todo = newTodo.rows[0];
+
+        const updateStudent = await pool.query("UPDATE todo SET student_id = $1 WHERE todo_id = $2", 
+        [student.id,  todo.todo_id]);
+        
+        const getNewTodo = await pool.query("SELECT * FROM todo WHERE todo_id = $1", [todo.todo_id]);
+        res.json(getNewTodo.rows[0]);
+
     } catch (err) {
         //catch construct for catching errors when pool returns something other than data
         console.error(err.message);
     }
 });
 
-//get all todos
+//create new user
 
-app.get("/todos", async (req, res) => {
-    try{
-        const allTodos = await pool.query("SELECT * FROM todo");
-        res.json(allTodos.rows);
+app.post('/register/', async(req,res) => {
+    try {
+        
+        const {student} = req.body;
+        const newUser = await pool.query(
+            "INSERT INTO students (student) VALUES($1) RETURNING *",
+            [student]
+        );
+        res.json(newUser.rows[0]);
     } catch (err) {
         console.error(err.message);
     }
+});
 
-}); 
+//fetch existing user
+
+app.get("/login/:student", async (req, res) => {
+    try {
+        //storing request id in local variable...
+        const {student} = req.params;
+        //perform pool query asynchronously to retrieve todo object where id value matches the id value stored in req.params[id]
+        const User = await pool.query("SELECT * FROM students WHERE student = $1", [student]);
+
+        //respond with with first row from table in json format
+        res.json(User.rows);
+    } catch (error) {
+        console.error(error.message);
+    }
+});
+
+//get all todos
+
+// app.get("/todos", async (req, res) => {
+//     try{
+//         const allTodos = await pool.query("SELECT * FROM todo");
+//         res.json(allTodos.rows);
+//     } catch (err) {
+//         console.error(err.message);
+//     }
+
+// }); 
 
 //get a todo
 
@@ -78,13 +127,21 @@ todo/random, id = random. We can use the express object req.params to store this
 */
 
 // Changed this to get todos based on the tag
-app.get("/todos/:type", async (req, res) => {
+app.get("/todos/:type/:student_id", async (req, res) => {
     try {
         //storing request id in local variable...
-        const {type} = req.params;
-        //perform pool query asynchronously to retrieve todo object where id value matches the id value stored in req.params[id]
-        const todo = await pool.query("SELECT * FROM todo WHERE type = $1", [type]);
+        const {
+            type,
+            student_id
+        } = req.params;
 
+        //perform pool query asynchronously to retrieve todo object where id value matches the id value stored in req.params[id]
+        const getStudent = await pool.query("SELECT * FROM students WHERE student = $1", [student_id]);
+        student = getStudent.rows[0];
+        
+        const todo = await pool.query("SELECT * FROM todo WHERE (type = $1 AND student_id = $2)", 
+        [type, student.id]);
+        
         //respond with with first row from table in json format
         res.json(todo.rows);
     } catch (error) {
@@ -120,10 +177,14 @@ app.delete("/todos/:id", async (req,res) => {
 });
 
 //delete all todos of a certain type
-app.delete("/todos/type/:type", async (req,res) => {
+app.delete("/todos/type/:type/:student_id", async (req,res) => {
     try {
-        const {type} = req.params;
-        const deleteAllTodos = await pool.query("DELETE FROM todo WHERE type = $1",[type]);
+        const {type,
+        student_id} = req.params;
+        const getStudent = await pool.query("SELECT * FROM students WHERE student = $1", [student_id]);
+        student = getStudent.rows[0];
+        const deleteAllTodos = await pool.query("DELETE FROM todo WHERE (type = $1 AND student_id = $2)",
+        [type, student.id]);
         console.log(deleteAllTodos);
         res.json("All Todos deleted!");
     } catch (error) {
@@ -131,15 +192,15 @@ app.delete("/todos/type/:type", async (req,res) => {
     }
 });
 
-app.delete("/todos", async (req,res) => {
-    try {
-        const deleteTodos = await pool.query("DELETE FROM todo");
-        console.log(deleteTodos);
-        res.json("All Todos Deleted!")
-    } catch (erropr) {
-        console.log(error.message);
-    }
-});
+// app.delete("/todos", async (req,res) => {
+//     try {
+//         const deleteTodos = await pool.query("DELETE FROM todo");
+//         console.log(deleteTodos);
+//         res.json("All Todos Deleted!")
+//     } catch (erropr) {
+//         console.log(error.message);
+//     }
+// });
 
 
 app.listen(5000, () => {
