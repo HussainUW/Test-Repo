@@ -3,7 +3,7 @@ import ListTodos from "./ListTodos";
 import './style.css';
 
 //react function that returns Input Todo Header in html
-const InputTodo = ({ type }) => {
+const InputTodo = ({ type, studentId }) => {
     const [description, setDescription] = useState("");
 
     //JS function that manages API for recieving a request
@@ -11,12 +11,13 @@ const InputTodo = ({ type }) => {
         e.preventDefault();
         try {
             const body = { description };
-            const response = await fetch(`http://localhost:5000/todos/${type}`, {
+            console.log(studentId);
+            const response = await fetch(`http://localhost:5000/todos/${type}/${studentId}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)
             });
-            window.location = "/";
+            window.location = `/schedule/${studentId}`;
         } catch (err) {
             console.error(err.message);
         }
@@ -58,13 +59,13 @@ const InputTodo = ({ type }) => {
                             <button type="button" className="btn btn-danger" data-dismiss="modal"
                             >
                                 Close</button>
-                                <button className="btn btn-success" onClick = {onSubmitForm}>Add New Task!</button>                        
+                                <button className="btn btn-success" onClick = {onSubmitForm}>Add New Todo</button>                        
                         </div>
 
                     </div>
                 </div>
             </div>
-            <ListTodos type={type} />
+            <ListTodos type={type} studentId = {studentId} />
         </Fragment>
     );
 };

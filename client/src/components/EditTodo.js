@@ -1,6 +1,6 @@
 import React, {Fragment, useState} from "react";
 
-const EditTodo = ({todo}) => {
+const EditTodo = ({todo, studentId}) => {
     const [description, setDescription] = useState(todo.description);
 
     //edit description function
@@ -15,7 +15,7 @@ const EditTodo = ({todo}) => {
                 body: JSON.stringify(body)
             });
             console.log(response);
-            window.location = "/";
+            window.location = `/schedule/${studentId}`;
         } catch (error) {
             console.error(error.message);
         }
@@ -39,7 +39,7 @@ const EditTodo = ({todo}) => {
         
         
               <div className="modal-header">
-                <h4 className="modal-title">Edit Task</h4>
+                <h4 className="modal-title">Edit Todo</h4>
                 <button type="button" className="close" data-dismiss="modal"
                 onClick = {() => setDescription(todo.description)}
                 >&times;</button>

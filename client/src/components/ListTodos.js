@@ -1,7 +1,7 @@
 import React, {Fragment, useEffect, useState} from "react";
 import EditTodo from "./EditTodo";
 
-const ListTodos = ({type}) => {
+const ListTodos = ({type, studentId}) => {
 
     const [todos, setTodos] = useState([]);
 
@@ -19,9 +19,9 @@ const ListTodos = ({type}) => {
     //delete all todos
     const deleteAllTodos = async() => {
         try {
-            const deleteAllTodos = await fetch(`http://localhost:5000/todos/type/${type}`, {method:"DELETE"});
+            const deleteAllTodos = await fetch(`http://localhost:5000/todos/type/${type}/${studentId}`, {method:"DELETE"});
             console.log(deleteAllTodos);
-            window.location = "/";
+            window.location = `/schedule/${studentId}`;
         } catch (error) {
             console.error(error.message);
         }
@@ -29,7 +29,7 @@ const ListTodos = ({type}) => {
 
     const getTodos = async() => {
         try {
-            const response = await fetch(`http://localhost:5000/todos/${type}`);
+            const response = await fetch(`http://localhost:5000/todos/${type}/${studentId}`);
             const jsonData = await response.json();
 
             setTodos(jsonData);
@@ -55,7 +55,7 @@ const ListTodos = ({type}) => {
                         <tr key={todo.type}>
                             <td className = "dark-grey">{todo.description}</td>
                             <td>
-                                <EditTodo todo = {todo}/>
+                                <EditTodo todo = {todo} studentId = {studentId}/>
                             </td>
                             <td>
                                 <button 
