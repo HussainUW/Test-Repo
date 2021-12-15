@@ -11,6 +11,14 @@
     display: inline-block;
     font-size: 10px;
   }
+
+  .btn{
+    color: #5e9bb3;
+  }
+
+  .btn:hover{
+    background-color: #4bb920;
+  }
   
   .flex-parent-element {
     display: flex;
@@ -19,7 +27,7 @@
   }
 
   .dark-grey{
-      color: #b4383d;
+      color: #ff0000;
   }
   
   .flex-child-element {
