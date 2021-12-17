@@ -11,6 +11,13 @@
     display: inline-block;
     font-size: 10px;
   }
+
+  .box{
+    border: 1px solid #327191;
+    display: inline-block;
+    text-align: center;
+
+  }
   
   .flex-parent-element {
     display: flex;
