@@ -86,7 +86,7 @@ const AddCourse = ({ studentId }) => {
         <br />
         <br />
 
-        <div className="container flex-parent-element">
+        <div className="flex-parent-element">
             {
                 courses.map((item) => (
                     <Course key={item.id} courseName={item.cors} />
