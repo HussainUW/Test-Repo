@@ -8,16 +8,28 @@
     padding: 5px 5px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    display: block;
     font-size: 10px;
   }
   .body{
     background-color: rgba(166, 175, 255, 0.4);
   }
 
+  .box{
+    border: 1px solid #327191;
+    display: block;
+    text-align: center;
+  }
+  
   .btn{
     border-color: #00ac96;
     color: #00ac96;
+  }
+
+  .grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 1rem;
   }
 
   .btn:hover{
@@ -27,9 +39,13 @@
   
   .flex-parent-element {
     display: flex;
-    border: none;
-    width: 99%;
+    width: 100%;
   }
+
+  .container{
+    display: block;
+  }
+
 
   .dark-grey{
       color: #000000;
@@ -41,10 +57,7 @@
     border: 1px solid #292b2c;
     border-radius: 10px;
     margin: 10px;
-  }
-  
-  .flex-child-element:first-child {
-    margin-right: 20px;
+    display: inline-block;
   }
   
   .App-logo {

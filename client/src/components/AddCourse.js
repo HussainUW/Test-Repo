@@ -2,22 +2,42 @@ import React, { Fragment, useState } from "react";
 import EditTodo from "./EditTodo";
 import ListTodos from "./ListTodos";
 import './style.css';
+import Course from "./Course"
 
-const AddCourse = () => {
+
+let courses = [];
+var numCourses = 1;
+
+const AddCourse = ({ studentId }) => {
+
+    // let courses = [
+    //     { id: "1", course: "ECE 222" },
+    //     { id: "2", course: "ECE 204" },
+    //     { id: "3", course: "ECE 205" },
+    //     { id: "4", course: "ECE 240" },
+    //     { id: "5", course: "ECE 109" },
+    //     { id: "6", course: "ECE 250" }
+    // ];
 
     const [course, setCourse] = useState("");
 
     const onSubmitCourse = (e) => {
         e.preventDefault();
         try {
-            const courseType = new Object({ course });
+            const courseType = {
+                id: numCourses,
+                cors: course,
+                student: studentId
+            };
+
+            numCourses = numCourses + 1;
             
-            <Fragment>
-                <div>
-                    <inputTodo type={courseType} />
-                </div>
-            </Fragment>
+            courses.push(courseType);
+
+            console.log(courses);
             console.log(courseType);
+            console.log(numCourses);
+            setCourse("");
         } catch (error) {
             console.error(error.message);
         }
@@ -62,6 +82,18 @@ const AddCourse = () => {
                 </div>
             </div>
         </div>
+
+        <br />
+        <br />
+
+        <div className="flex-parent-element">
+            {
+                courses.map((item) => (
+                    <Course key={item.id} courseName={item.cors} />
+                ))
+            }
+        </div>
+
 
     </Fragment>
 
