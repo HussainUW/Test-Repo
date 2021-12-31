@@ -47,7 +47,7 @@ const ListTodos = ({type, studentId}) => {
     return <Fragment>
             <table cellPadding="4" cellSpacing="4" border="0">
                 <thead>
-                <button
+                <button id="hide"
                         className = "btn btn-class"
                             onClick = {() => deleteAllTodos(todos)}
                         ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-folder-x" viewBox="0 0 16 16">
@@ -64,7 +64,7 @@ const ListTodos = ({type, studentId}) => {
                                 <EditTodo todo = {todo} studentId = {studentId}/>
                             </td>
                             <td>
-                                <button 
+                                <button id="hide" 
                                 className = "btn btn-class"
                                 onClick={() => deleteTodo(todo.todo_id)}
                                 ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">

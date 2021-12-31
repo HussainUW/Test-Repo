@@ -46,6 +46,12 @@
     display: block;
   }
 
+  .con{
+    width: 98%;
+    border: 1px solid  #292b2c;
+    border-radius: 3px;
+  }
+
 
   .dark-grey{
       color: #000000;
@@ -121,6 +127,12 @@
   
   border-radius: 5px;
   box-shadow: 7px 7px 7px rgb(0, 0, 0);
+}
+
+@media print{
+  #hide{
+    display: none;
+  }
 }
 
 .even-columns > *{

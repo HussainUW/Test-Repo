@@ -28,9 +28,9 @@ function App() {
           <Route exact path="/">
             <Login />
           </Route>
-          <ProtectedRoute exact path="/schedule/:student">
+          <Route exact path="/schedule/:student">
             <Schedule />
-          </ProtectedRoute>
+          </Route>
         </Switch>
       </Router>
     </BrowserRouter>

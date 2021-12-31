@@ -68,7 +68,7 @@ const Login = () => {
                 
                 <button class="btn btn-class" onClick={onSubmitStudentId}>Login/Register</button>
                     &nbsp;
-                    <button class="btn btn-class" onClick={() =>{history.push("schedule/12345678");}}>Demo</button>
+                    <button class="btn btn-class" onClick={() => {history.push("schedule/12345678");}}>Demo This App</button>
                     
                     <button type = "button" class="btn btn-class float-right" data-toggle="modal" data-target="#mymodal">About</button>
             </Form>
@@ -80,10 +80,13 @@ const Login = () => {
             <div class="modal-dialog" >
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h2 class="modal-title"> Weekly Course Logger</h2>
+                        <h2 class="modal-title"> About this application...</h2>
                     </div>
                     <div class="modal-body">
-                        <p> some text here </p>
+                        <p> This application is an open source project designed to
+                            create a simple productivity application that allows
+                            a user to create weekly todo lists. This application
+                            was implemented using the PERN stack.</p>
                     </div>    
                 </div>
             </div>
@@ -99,34 +102,3 @@ const Login = () => {
 
 export default Login;
 
-{/* <div className="container-fluid h-100">
-<div className="row justify-content-center align-items-center h-100">
-    <div className="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
-        <p>
-            If your an existing user enter your student id to access
-            your weekly shedule. If not, enter your student ID to
-            create a new schedule associated with your ID. To demo
-            this application, enter '12345678'.
-        </p>
-        <form action="" onSubmit={onSubmitStudentId}>
-            <div className="form-group">
-                <input _ngcontent-c0="" className="form-control form-control-lg"
-                    value={student}
-                    onChange={e => setStudent(e.target.value)} />
-            </div>
-
-            <div className="form-group">
-                <button className="btn btn-info btn-lg btn-block"
-                    onClick={onSubmitStudentId}>login</button>
-            </div>
-        </form>
-    </div>
-</div>
-</div>
-
-</Form.Group>
-                
-                <button class="btn btn-class">Login</button>
-                <button class="btn btn-class">Register</button>
-                <button class="btn btn-class">Demo</button>
-            </Form>*/}
