@@ -5,7 +5,8 @@ CREATE DATABASE perntodo;
 and a description*/ 
 CREATE TABLE courses(
     id SERIAL PRIMARY KEY,
-    course VARCHAR(15)
+    course VARCHAR(15),
+    student_id BIGINT REFERENCES students (id)
 );
 
 CREATE TABLE students(
@@ -24,8 +25,7 @@ CREATE TABLE todo(
 CREATE TABLE tasks(
     id SERIAL PRIMARY KEY,
     task VARCHAR(255),
-    course_id BIGINT REFERENCES courses (id),
-    student_id BIGINT REFERENCES students (id)
+    course_id BIGINT REFERENCES courses (id)
 );
 
 
