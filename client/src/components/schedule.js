@@ -74,13 +74,6 @@ export default function Schedule() {
 
                     </div>
 
-
-
-
-
-
-
-
                     <br />
                     <br />
                     <AddCourse studentId={student} />

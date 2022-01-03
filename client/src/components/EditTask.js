@@ -10,13 +10,13 @@ const EditTask = ({task, studentId}) => {
         e.preventDefault();
         try {
             const body = {description};
+            window.location = `/schedule/${studentId}`;
             const response = await fetch(`http://localhost:5000/tasks/${task.id}`,{
                 method:"PUT",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
             });
             console.log(response);
-            window.location = `/schedule/${studentId}`;
         } catch (error) {
             console.error(error.message);
         }

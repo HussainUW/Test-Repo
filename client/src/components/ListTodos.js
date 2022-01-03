@@ -20,9 +20,9 @@ const ListTodos = ({type, studentId}) => {
     //delete all todos
     const deleteAllTodos = async() => {
         try {
+            setTodos([]);
             const deleteAllTodos = await fetch(`http://localhost:5000/todos/type/${type}/${studentId}`, {method:"DELETE"});
             console.log(deleteAllTodos);
-            window.location = `/schedule/${studentId}`;
         } catch (error) {
             console.error(error.message);
         }
