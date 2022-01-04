@@ -9,7 +9,7 @@ const ListTodos = ({type, studentId}) => {
     //delete todo function
     const deleteTodo = async id =>{
         try {
-            const deleteTodo = await fetch(`http://localhost:5000/todos/${id}`, {method: "DELETE"});
+            const deleteTodo = await fetch(`/todos/${id}`, {method: "DELETE"});
             setTodos(todos.filter(todo => todo.todo_id !== id));
             console.log(deleteTodo);
         } catch (err) {
@@ -21,7 +21,7 @@ const ListTodos = ({type, studentId}) => {
     const deleteAllTodos = async() => {
         try {
             setTodos([]);
-            const deleteAllTodos = await fetch(`http://localhost:5000/todos/type/${type}/${studentId}`, {method:"DELETE"});
+            const deleteAllTodos = await fetch(`/todos/type/${type}/${studentId}`, {method:"DELETE"});
             console.log(deleteAllTodos);
         } catch (error) {
             console.error(error.message);
@@ -30,7 +30,7 @@ const ListTodos = ({type, studentId}) => {
 
     const getTodos = async() => {
         try {
-            const response = await fetch(`http://localhost:5000/todos/${type}/${studentId}`);
+            const response = await fetch(`/todos/${type}/${studentId}`);
             const jsonData = await response.json();
 
             setTodos(jsonData);

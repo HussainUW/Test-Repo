@@ -10,7 +10,7 @@ const ListTasks = ({course, studentId}) => {
     const deleteTasks = async id =>{
         try {
             setTasks(tasks.filter(tasks => tasks.id !== id));
-            const deleteTask = await fetch(`http://localhost:5000/tasks/${id}`, {method: "DELETE"});
+            const deleteTask = await fetch(`/tasks/${id}`, {method: "DELETE"});
             console.log(deleteTask);
         } catch (err) {
             console.error(err.message);
@@ -21,7 +21,7 @@ const ListTasks = ({course, studentId}) => {
     const deleteAllTasks = async() => {
         try {
             setTasks([]);
-            const deleteAllTasks = await fetch(`http://localhost:5000/alltasks/${course}`, {method:"DELETE"});
+            const deleteAllTasks = await fetch(`/alltasks/${course}`, {method:"DELETE"});
             console.log(deleteAllTasks);
         } catch (error) {
             console.error(error.message);
@@ -30,7 +30,7 @@ const ListTasks = ({course, studentId}) => {
 
     const getTasks = async() => {
         try {
-            const response = await fetch(`http://localhost:5000/tasks/${course}`);
+            const response = await fetch(`/tasks/${course}`);
             const jsonData = await response.json();
 
             setTasks(jsonData);

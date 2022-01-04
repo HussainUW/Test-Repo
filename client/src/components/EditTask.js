@@ -11,7 +11,7 @@ const EditTask = ({task, studentId}) => {
         try {
             const body = {description};
             window.location = `/schedule/${studentId}`;
-            const response = await fetch(`http://localhost:5000/tasks/${task.id}`,{
+            const response = await fetch(`/tasks/${task.id}`,{
                 method:"PUT",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)

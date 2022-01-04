@@ -12,7 +12,7 @@ const InputTodo = ({ type, studentId }) => {
         try {
             const body = { description };
             console.log(studentId);
-            const response = await fetch(`http://localhost:5000/todos/${type}/${studentId}`, {
+            const response = await fetch(`/todos/${type}/${studentId}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)

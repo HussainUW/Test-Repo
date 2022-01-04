@@ -22,7 +22,7 @@ const Login = () => {
 
             const body = { student };
             console.log(body);
-            const response = await fetch(`http://localhost:5000/login/${student}`);
+            const response = await fetch(`/login/${student}`);
             const jsonData = await response.json();
 
             isStudent = jsonData;
@@ -30,7 +30,7 @@ const Login = () => {
             
             if (isStudent.length === 0) {
                 console.log("if statement activated!");
-                const response = await fetch("http://localhost:5000/register", {
+                const response = await fetch("/register", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(body)

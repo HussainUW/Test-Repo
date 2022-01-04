@@ -8,14 +8,18 @@ Modules in our case refer to express, pg and cors which linked to our JS / React
 const express = require("express");
 const cors = require("cors");
 const pool = require("./db"); //allows us to run queries with postgres using the 'pool' required from db.js
-
+const path = require("path");
 //creating variable 'app' which will run the express library and allow us to access its functions
 const app = express();
+const PORT = process.env.PORT || 5000;
 
 //middleware
 app.use(cors());
 app.use(express.json()); //allows us to recieve data JSON from client, allows us to use the req.body object
 
+if (process.env.NODE_ENV === "production"){
+    app.use(express.static(path.join(__dirname, "client/build")));
+}
 //ROUTES//
 
 //home route
@@ -317,8 +321,8 @@ app.delete("/alltasks/:id", async (req,res) => {
 // });
 
 
-app.listen(5000, () => {
-    console.log("server has started on port 5000")
+app.listen(PORT, () => {
+    console.log(`server has started on port ${PORT}`);
 });
 
 

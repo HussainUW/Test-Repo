@@ -9,7 +9,7 @@ const Course = ({ studentId }) => {
     const deleteCourse = async id => {
         try {
             window.location = `/schedule/${studentId}`;
-            const response = await fetch(`http://localhost:5000/courses/${id}`, { method: "DELETE" });
+            const response = await fetch(`/courses/${id}`, { method: "DELETE" });
             setCourses(courses.filter(course => course.id !== id));
         } catch (error) {
             console.error(error.message);
@@ -20,7 +20,7 @@ const Course = ({ studentId }) => {
 
     const getCourses = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/courses/${studentId}`);
+            const response = await fetch(`/courses/${studentId}`);
             const jsonData = await response.json();
 
             setCourses(jsonData);
