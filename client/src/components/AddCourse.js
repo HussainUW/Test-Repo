@@ -1,49 +1,29 @@
 import React, { Fragment, useState } from "react";
-import EditTodo from "./EditTodo";
-import ListTodos from "./ListTodos";
 import './style.css';
-import Course from "./Course"
-
-
-let courses = [];
-var numCourses = 1;
 
 const AddCourse = ({ studentId }) => {
 
-    // let courses = [
-    //     { id: "1", course: "ECE 222" },
-    //     { id: "2", course: "ECE 204" },
-    //     { id: "3", course: "ECE 205" },
-    //     { id: "4", course: "ECE 240" },
-    //     { id: "5", course: "ECE 109" },
-    //     { id: "6", course: "ECE 250" }
-    // ];
-
     const [course, setCourse] = useState("");
 
-    const onSubmitCourse = (e) => {
+    const onSubmitCourse = async (e) => {
         e.preventDefault();
         try {
-            const courseType = {
-                id: numCourses,
-                cors: course,
-                student: studentId
-            };
 
-            numCourses = numCourses + 1;
-            
-            courses.push(courseType);
+            const body = { course };
+            const response = await fetch(`http://localhost:5000/courses/${studentId}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body)
+            });
+            window.location = `/schedule/${studentId}`;
 
-            console.log(courses);
-            console.log(courseType);
-            console.log(numCourses);
-            setCourse("");
         } catch (error) {
             console.error(error.message);
         }
-    }
+    };
 
-    return <Fragment>
+    return (
+    <Fragment>
         <div id = "hide" className="mt-2 ml-4">
             <button className="btn" data-toggle="modal" data-target="#myModal"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-file-earmark-plus" viewBox="0 0 16 16">
                 <path d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
@@ -63,19 +43,17 @@ const AddCourse = ({ studentId }) => {
 
 
                     <div class="modal-body">
-                        <form className="d-flex" onSubmit={onSubmitCourse}>
                             <div>
                                 <input type="text" className="form-control" value={course}
-                                    onChange={e => setCourse(e.target.value)} />
+                                onChange={e => setCourse(e.target.value)} />
                             </div>
-                        </form>
                     </div>
 
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-success" data-dismiss="modal"
-                            onClick={onSubmitCourse}
+                            onClick={e => onSubmitCourse(e)}
                         >Submit</button>
                     </div>
 
@@ -86,17 +64,9 @@ const AddCourse = ({ studentId }) => {
         <br />
         <br />
 
-        <div className="flex-parent-element">
-            {
-                courses.map((item) => (
-                    <Course key={item.id} courseName={item.cors} />
-                ))
-            }
-        </div>
-
 
     </Fragment>
-
-}
+    );
+};
 
 export default AddCourse;
