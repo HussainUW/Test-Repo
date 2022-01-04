@@ -74,16 +74,10 @@ export default function Schedule() {
 
                     </div>
 
-
-
-
-
-
-
-
                     <br />
                     <br />
                     <AddCourse studentId={student} />
+                    <Course studentId = {student}/>
                     <br />
                     <br />
                     <button id= "hide" className="ml-4 btn"

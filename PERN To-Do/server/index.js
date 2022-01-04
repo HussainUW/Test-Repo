@@ -44,7 +44,7 @@ app.post('/todos/:type/:student_id', async(req,res) => {
         const {
             type,
             student_id
-        } = req.params
+        } = req.params;
 
         //description is assigned request body data stored in req.body
         const {description} = req.body;
@@ -72,6 +72,43 @@ app.post('/todos/:type/:student_id', async(req,res) => {
     } catch (err) {
         //catch construct for catching errors when pool returns something other than data
         console.error(err.message);
+    }
+});
+
+// Create a course for a specific student
+app.post('/courses/:id', async (req,res) => {
+    try {
+        const {id} = req.params;
+        const {course} = req.body;
+
+        const getStudent = await pool.query("SELECT * FROM students WHERE student = $1",[id]);
+        const student = getStudent.rows[0];
+
+        const newCourse = await pool.query("INSERT INTO courses (course) VALUES($1) RETURNING *",[course]);
+        const courseObj = newCourse.rows[0];
+
+        const updateCourse = await pool.query("UPDATE courses SET student_id = $1 WHERE id = $2",[student.id,courseObj.id]);
+
+        res.json(courseObj);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+// Create a task for a course
+app.post('/tasks/:course', async(req,res) => {
+    try {
+        const {course} = req.params;
+        const {task} = req.body;
+
+        const newTask = await pool.query("INSERT INTO tasks (task) VALUES($1) RETURNING *",[task]);
+        const taskObj = newTask.rows[0];
+
+        const updateTask = await pool.query("UPDATE tasks SET course_id = $1 where id = $2",[course,taskObj.id]);
+
+        res.json(taskObj);
+    } catch (error) {
+        console.error(error.message);
     }
 });
 
@@ -149,6 +186,36 @@ app.get("/todos/:type/:student_id", async (req, res) => {
     }
 });
 
+//Get all courses for a student
+app.get("/courses/:student_id", async (req,res) => {
+    try {
+        
+        const {student_id} = req.params;
+
+        const getStudent = await pool.query("SELECT * FROM students WHERE student = $1",[student_id]);
+        const student = getStudent.rows[0];
+
+        const courses = await pool.query("SELECT * FROM courses WHERE student_id = $1",[student.id]);
+        
+        res.json(courses.rows);
+    } catch (error) {
+        console.error(error.message);
+    }
+});
+// Get all tasks for a course
+app.get("/tasks/:id", async (req,res) => {
+    
+    try{
+
+        const {id} = req.params;
+        const getTask = await pool.query("SELECT * FROM tasks WHERE course_id = $1",[id]);
+
+        res.json(getTask.rows);
+    } catch (error){
+        console.error(error.message);
+    }
+});
+
 //update a todo
 
 app.put("/todos/:id", async (req,res) => {
@@ -161,6 +228,20 @@ app.put("/todos/:id", async (req,res) => {
         res.json("Todo was updated!");
     } catch (error) {
         console.log(error.message);
+    }
+});
+
+// update a task
+app.put("/tasks/:id", async (req,res) => {
+    try {
+        const {id} = req.params;
+        const {description} = req.body;
+
+        const updateTask = await pool.query("UPDATE tasks SET task = $1 WHERE id = $2",[description, id]);
+
+
+    } catch (error) {
+        console.error(error.message);
     }
 });
 
@@ -189,6 +270,39 @@ app.delete("/todos/type/:type/:student_id", async (req,res) => {
         res.json("All Todos deleted!");
     } catch (error) {
         console.log(error.message);
+    }
+});
+
+// Delete a course
+app.delete("/courses/:id", async (req,res) => {
+    try {
+        const {id} = req.params;
+        const deleteTasks = await pool.query("DELETE FROM tasks where course_id = $1", [id]);
+        const deleteCourse = await pool.query("DELETE FROM courses where id = $1",[id]);
+
+    } catch (error) {
+        console.error(error.message);
+    }
+}); 
+
+// Delete a single task
+app.delete("/tasks/:id", async (req,res) => {
+    try {
+        const {id} = req.params;
+        const deleteTask = await pool.query("DELETE FROM tasks WHERE id = $1",[id]);
+        
+    } catch (error) {
+        console.error(error.message);
+    }
+});
+
+// Delete all tasks from a course
+app.delete("/alltasks/:id", async (req,res) => {
+    try {
+        const {id} = req.params;
+        const deleteAllTasks = await pool.query("DELETE FROM tasks WHERE course_id = $1",[id]);
+    } catch (error) {
+        console.error(error.message);
     }
 });
 
