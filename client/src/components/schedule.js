@@ -13,7 +13,7 @@ export default function Schedule() {
     let history = useHistory();
     return (
         <Fragment>
-
+            <title>test</title>
             <body>
 
                 <h1 class="display-1"> Weekly Course Logger
