@@ -74,14 +74,14 @@ export default function Schedule() {
                     <Course studentId = {student}/>
                     <br />
                     <br />
-                    <button id= "hide" className="ml-4 btn"
+                    <button id= "hide" className="ml-2 btn"
                         onClick={() => {
                             window.print();
                         }}
                     >Export to PDF</button>
                     <br />
                     <br />
-                    <button id="hide" className="btn btn-class"
+                    <button id="hide" className="ml-2 btn btn-class"
                             onClick={() => {
                                 auth.logout(() => {
                                     history.push("/");

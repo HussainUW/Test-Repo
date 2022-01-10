@@ -65,12 +65,7 @@ flex: 1;
 background-color: white;
 border: 1px solid #292b2c;
 border-radius: 10px;
-margin: 10px;
 display: inline-block;
-}
-
-.flex-child-element:first-child {
-margin-left: 12px;
 }
 
 
@@ -261,20 +256,7 @@ text-align: center;
 background-color: white;
 font-size: 18px;
 }
-.display-3{
-  display: inline-block;
-  width: 1536px;
-  height: 100px;
-  color:rgb(255, 255, 255);
-  background-color: black;
-  font-family:'Trebuchet MS', sans-serif;
-  font-size:50px;
-  text-align: center;   
-}
-.display-4{
-  background-color: white;
-  font-size: 18px;
-}
+
 
 
 

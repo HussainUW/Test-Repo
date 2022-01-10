@@ -34,7 +34,7 @@ const Course = ({ studentId }) => {
     }, []);
 
     return (<Fragment>
-        <div className="flex-parent-element ml-3">
+        <div className="flex-parent-element ml-2">
             {
                 courses.map((item) => (
                     <div className="flex-child-element col mt-2 display-4">
