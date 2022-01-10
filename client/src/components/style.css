@@ -41,7 +41,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 1rem;
-  width: 98%;
+  width: 99%;
 }
 
 .container{
@@ -61,7 +61,6 @@
 
 
 .flex-child-element {
-flex: 1;
 background-color: white;
 border: 1px solid #292b2c;
 border-radius: 10px;
@@ -244,7 +243,7 @@ text-align: left;
 }
 .display-3{
 display: inline-block;
-width: 1536px;
+width: 1518px;
 height: 100px;
 color:rgb(255, 255, 255);
 background-color: black;

@@ -83,10 +83,18 @@ const Login = () => {
                         <h2 class="modal-title"> About this application...</h2>
                     </div>
                     <div class="modal-body">
-                        <p> This application is an open source project designed to
-                            create a simple productivity application that allows
-                            a user to create weekly todo lists. This application
-                            was implemented using the PERN stack.</p>
+                        <p> What is this App? <br></br>
+                            This application is an open source project designed to create a 
+                            simple productivity application that allows a user to create weekly 
+                            todo lists. It was initially designed as a productivity system for ECE 
+                            students at UW, and we have since adapted it as a React Based Web App.
+                            <hr></hr>
+                            Tech Stack <br></br>
+                            This App uses Postgresql to store and relate user data on the backend. 
+                            The Database is queried using a restful API that we wrote to make a number 
+                            of requests to access and store user data.  API was developed in JavaScript 
+                            using Node.js and Express elements. The front-end application is developed primarily 
+                            using React with the entire project being deployed over a Heroku server.</p>
                     </div>    
                 </div>
             </div>
