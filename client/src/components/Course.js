@@ -34,10 +34,10 @@ const Course = ({ studentId }) => {
     }, []);
 
     return (<Fragment>
-        <div className="flex-parent-element con ml-3 even-columns">
+        <div className="flex-parent-element ml-3">
             {
                 courses.map((item) => (
-                    <div className="flex-child-element col mt-2">
+                    <div className="flex-child-element col mt-2 display-4">
                         <h3>{item.course}</h3>
 
                         <CreateTask course={item.id} studentId={studentId} />
