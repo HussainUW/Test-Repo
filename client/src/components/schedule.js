@@ -17,14 +17,8 @@ export default function Schedule() {
             <body>
 
                 <h1 class="display-3 "> Weekly Course Logger
-                    <div class="right">
-                        <button id="hide" className="btn btn-class"
-                            onClick={() => {
-                                auth.logout(() => {
-                                    history.push("/");
-                                });
-                            }}>logout</button>
-                    </div>
+                    
+                
                     <h4 class="display-2" > STUDENT ID: {student}</h4>
                 </h1>
 
@@ -85,6 +79,14 @@ export default function Schedule() {
                             window.print();
                         }}
                     >Export to PDF</button>
+                    <br />
+                    <br />
+                    <button id="hide" className="btn btn-class"
+                            onClick={() => {
+                                auth.logout(() => {
+                                    history.push("/");
+                                });
+                            }}>logout</button>
 
 
             </body>

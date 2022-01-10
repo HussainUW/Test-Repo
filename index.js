@@ -4,6 +4,8 @@ to access modules. This is similar to how 'import' and 'include' allow us to acc
 Modules in our case refer to express, pg and cors which linked to our JS / React project via Node.
 */
 
+//testing new dev console + git
+
 //requiring libraries...this allows us to use the express and cors libraries / modules
 const express = require("express");
 const cors = require("cors");
