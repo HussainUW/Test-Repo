@@ -13,10 +13,10 @@ export default function Schedule() {
     let history = useHistory();
     return (
         <Fragment>
-
+            <title>test</title>
             <body>
 
-                <h1 class="display-1"> Weekly Course Logger
+                <h1 class="display-3 "> Weekly Course Logger
                     <div class="right">
                         <button id="hide" className="btn btn-class"
                             onClick={() => {
@@ -35,38 +35,38 @@ export default function Schedule() {
 
 
 
-                    <div class = "con ml-3">
-                        <div class="even-columns">
-                            <div class="col">
+                    <div class = "ml-2 mr-2">
+                        <div class="grid">
+                            <div class="col display-4">
 
                                 <h3 className="dark-grey text-center mt-5">Monday</h3>
                                 <InputTodo type={'mon'} studentId={student} />
                             </div>
 
-                            <div class="col">
+                            <div class="col display-4">
 
                                 <h3 className="dark-grey text-center mt-5">Tuesday</h3>
                                 <InputTodo type={'tue'} studentId={student} />
                             </div>
 
-                            <div class="col">
+                            <div class="col display-4">
                                 <h3 className="dark-grey text-center mt-5">Wednesday</h3>
                                 <InputTodo type={'wed'} studentId={student} />
                             </div>
 
-                            <div class="col">
+                            <div class="col display-4">
 
                                 <h3 className="dark-grey text-center mt-5">Thursday</h3>
                                 <InputTodo type={'thu'} studentId={student} />
                             </div>
 
-                            <div class="col">
+                            <div class="col display-4">
 
                                 <h3 className="dark-grey text-center mt-5">Friday</h3>
                                 <InputTodo type={'fri'} studentId={student} />
                             </div>
 
-                            <div class="col">
+                            <div class="col display-4">
                                 <h3 className="dark-grey text-center mt-5">Weekend</h3>
                                 <InputTodo type={'wknd'} studentId={student} />
                             </div>
