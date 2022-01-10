@@ -1,6 +1,5 @@
-# Web based productivity application developed for ECE students at UW using the PERN stack...
 
-## What is this App?
+# What is this App?
 
 This application is an open source project designed to create a simple productivity application that allows a user to create weekly todo lists. It was initially designed as a productivity system for ECE students at UW, and we have since adapted it as a React Based Web App.
 
