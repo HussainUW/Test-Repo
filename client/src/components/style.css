@@ -55,53 +55,33 @@
 }
 
 
-<<<<<<< HEAD
 .dark-grey{
-    color: #000000;
+  color: #000000;
 }
 
 
 .flex-child-element {
-  flex: 1;
-  background-color: white;
-  border: 1px solid #292b2c;
-  border-radius: 10px;
-  margin: 10px;
-  display: inline-block;
+flex: 1;
+background-color: white;
+border: 1px solid #292b2c;
+border-radius: 10px;
+margin: 10px;
+display: inline-block;
 }
 
 .flex-child-element:first-child {
-  margin-left: 12px;
+margin-left: 12px;
 }
 
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+height: 40vmin;
+pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-=======
-  .dark-grey{
-      color: #000000;
-  }
- 
   
-  .flex-child-element {
-    flex: 1;
-    border: 1px solid #292b2c;
-    border-radius: 10px;
-    margin: 10px;
-    display: inline-block;
-  }
-
-  .flex-child-element:first-child {
-    margin-left: 12px;
-  }
-  
-  
->>>>>>> 77a63023035c90cbba1f5c3bb41f7a9b5ff8aeda
-  .App-logo {
+.App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
