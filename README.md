@@ -6,3 +6,5 @@ This application is an open source project designed to create a simple productiv
 
 Tech Stack
 This App uses Postgresql to store and relate user data on the backend. The Database is queried using a restful API that we wrote to make a number of requests to access and store user data.  API was developed in JavaScript using Node.js and Express elements. The front-end application is developed primarily using React with the entire project being deployed over a Heroku server.
+
+Application can be accessed here: https://weekly-course-logger.herokuapp.com/
